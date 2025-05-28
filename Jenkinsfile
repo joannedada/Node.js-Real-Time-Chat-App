@@ -22,7 +22,7 @@ pipeline {
                     sudo rm -rf /var/www/Node.js-Real-Time-Chat-App
                     sudo mkdir -p /var/www/Node.js-Real-Time-Chat-App
                     sudo cp -R . /var/www/Node.js-Real-Time-Chat-App
-                    cd /var/www/chat-app
+                    cd /var/www/Node.js-Real-Time-Chat-App
                 '''
 
                 // Restart the app via PM2 (no SSH needed!)
