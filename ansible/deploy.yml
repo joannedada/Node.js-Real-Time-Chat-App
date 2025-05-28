@@ -1,0 +1,50 @@
+---
+- name: Deploy Node.js Chat App
+  hosts: chatappserver
+  become: yes
+
+  tasks:
+    - name: Update apt packages
+      apt:
+        update_cache: yes
+
+    - name: Install Node.js, npm, Nginx
+      apt:
+        name: "{{ item }}"
+        state: present
+      loop:
+        - nodejs
+        - npm
+        - nginx
+
+    - name: Install PM2 globally
+      npm:
+        name: pm2
+        global: yes
+
+    - name: Clone GitHub repo
+      git:
+        repo: "https://github.com/joannedada/Node.js-Real-Time-Chat-App.git"
+        dest: /home/ubuntu/Node.js-Real-Time-Chat-App
+        clone: yes
+        update: yes
+
+    - name: Install app dependencies
+      npm:
+        path: /home/ubuntu/Node.js-Real-Time-Chat-App
+
+    - name: Start app with PM2
+      command: pm2 start /home/ubuntu/Node.js-Real-Time-Chat-App/app.js --name "Real-Time-Chat-App"
+      become_user: ubuntu
+
+    - name: Configure Nginx reverse proxy
+      copy:
+        src: ./nginx-chat-app.conf  # Local Nginx config file
+        dest: /etc/nginx/sites-available/Node.js-Real-Time-Chat-App
+      notify: Restart Nginx
+
+  handlers:
+    - name: Restart Nginx
+      service:
+        name: nginx
+        state: restarted
