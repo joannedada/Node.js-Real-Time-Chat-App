@@ -4,7 +4,8 @@ pipeline {
     stages {
         stage('Checkout Code') {
             steps {
-                git 'https://github.com/joannedada/Node.js-Real-Time-Chat-App.git'
+                git branch: 'dev',
+                    url: 'https://github.com/joannedada/Node.js-Real-Time-Chat-App.git'
             }
         }
 
