@@ -34,7 +34,7 @@
         path: /home/ubuntu/Node.js-Real-Time-Chat-App
 
     - name: Start app with PM2
-      command: pm2 start /home/ubuntu/Node.js-Real-Time-Chat-App/app.js --name "Real-Time-Chat-App"
+      command: pm2 start -f /home/ubuntu/Node.js-Real-Time-Chat-App/app.js --name "Real-Time-Chat-App" 
       become_user: ubuntu
 
     - name: Configure Nginx reverse proxy
