@@ -42,6 +42,11 @@
         src: ./nginx-chat-app.conf  # Local Nginx config file
         dest: /etc/nginx/sites-available/Node.js-Real-Time-Chat-App
       notify: Restart Nginx
+    - name: Enable Nginx site
+      file:
+        src: /etc/nginx/sites-available/Node.js-Real-Time-Chat-App
+        dest: /etc/nginx/sites-enabled/Node.js-Real-Time-Chat-App
+        state: link
 
   handlers:
     - name: Restart Nginx

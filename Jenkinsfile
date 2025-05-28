@@ -27,7 +27,7 @@ pipeline {
                 // Restart the app via PM2 (no SSH needed!)
                 sh '''
                     pm2 stop Real-Time-chat-App || true
-                    pm2 start /var/www/Node.js-Real-Time-Chat-App/app.js --name "Real-Time-chat-App"
+                    pm2 start /var/www/Node.js-Real-Time-Chat-App/app.js --name "Real-Time-Chat-App"
                     pm2 save
                 '''
             }
