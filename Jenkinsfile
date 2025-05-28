@@ -19,7 +19,6 @@ pipeline {
             steps {
                 // Copy files to the deployment directory (replace `/var/www/chat-app` with your target path)
                 sh '''
-                    rm -rf /var/www/Node.js-Real-Time-Chat-App
                     mkdir -p /var/www/Node.js-Real-Time-Chat-App
                     cp -R . /var/www/Node.js-Real-Time-Chat-App
                     cd /var/www/Node.js-Real-Time-Chat-App
