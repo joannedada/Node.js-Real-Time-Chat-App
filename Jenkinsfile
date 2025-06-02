@@ -17,14 +17,14 @@ pipeline {
 
         stage('Deploy App') {
             steps {
-                // Copy files to the deployment directory (replace `/var/www/chat-app` with your target path)
+                // Copy files to the deployment directory
                 sh '''
                     mkdir -p /var/www/Node.js-Real-Time-Chat-App
                     cp -R . /var/www/Node.js-Real-Time-Chat-App
                     cd /var/www/Node.js-Real-Time-Chat-App
                 '''
 
-                // Restart the app via PM2 (no SSH needed!)
+                // Restart the app 
                 sh '''
                     pm2 stop Real-Time-chat-App || true
                     pm2 start /var/www/Node.js-Real-Time-Chat-App/app.js --name "Real-Time-Chat-App"
